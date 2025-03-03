@@ -1,12 +1,9 @@
+// import 'dart:nativewrappers/_internal/vm/lib/async_patch.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:support/views/login/controller.dart';
 import 'package:toastification/toastification.dart';
-
-var loginEmailController = TextEditingController();
-var loginPasswordController = TextEditingController();
-
-bool loginIsChecked = false;
-bool loginIsActive = true;
 
 void loginAuthNotification(BuildContext context, ToastificationType type,
     String tittle, String description) {
@@ -24,6 +21,7 @@ void loginBuildAlert(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         title: Row(
           children: [
@@ -45,14 +43,20 @@ void loginBuildAlert(BuildContext context) {
             const SizedBox(
               height: 30,
             ),
-            const Text('Please enter your number phone to get code'),
+            const Text(
+              'Please enter your number phone to get a access code',
+              style: TextStyle(fontSize: 16),
+            ),
             const SizedBox(
-              height: 15,
+              height: 20,
             ),
             TextField(
+              controller: loginSendCode,
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   prefix: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,7 +73,7 @@ void loginBuildAlert(BuildContext context) {
                       borderRadius: BorderRadius.circular(10))),
             ),
             const SizedBox(
-              height: 50,
+              height: 40,
             ),
           ],
         ),
@@ -84,7 +88,9 @@ void loginBuildAlert(BuildContext context) {
                       backgroundColor: const Color.fromARGB(255, 44, 45, 51),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
-                  onPressed: () {},
+                  onPressed: () {
+                    loginCodeAlert(context);
+                  },
                   child: const Text(
                     'Get code',
                     style: TextStyle(fontSize: 16, color: Colors.white),

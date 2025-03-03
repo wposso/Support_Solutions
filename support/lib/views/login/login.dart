@@ -23,25 +23,32 @@ class _LoginState extends State<Login> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_back_sharp,
-                      size: 30,
-                    ))
-              ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_back_sharp,
+                        size: 30,
+                      ))
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  const Image(
-                    image: AssetImage('assets/support_solution.jpeg'),
-                    height: 310,
-                    width: 290,
+                  const Padding(
+                    padding: EdgeInsets.zero,
+                    child: Image(
+                      image: AssetImage('assets/support_solution.jpeg'),
+                      fit: BoxFit.contain,
+                      height: 250,
+                      width: 290,
+                    ),
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +56,7 @@ class _LoginState extends State<Login> {
                       Text(
                         'Get started',
                         style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w400),
+                            fontSize: 30, fontWeight: FontWeight.w400),
                       )
                     ],
                   ),
@@ -63,7 +70,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 65,
                   ),
                   SizedBox(
                     child: Column(
@@ -84,6 +91,8 @@ class _LoginState extends State<Login> {
                         TextField(
                           controller: loginEmailController,
                           decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 10),
                               hintText: 'Enter your email',
                               hintStyle: TextStyle(fontSize: 16),
                               border: OutlineInputBorder(
@@ -113,6 +122,8 @@ class _LoginState extends State<Login> {
                           obscureText: loginIsActive,
                           controller: loginPasswordController,
                           decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 10),
                               suffixIcon:
                                   loginPasswordController.text.isNotEmpty
                                       ? IconButton(
