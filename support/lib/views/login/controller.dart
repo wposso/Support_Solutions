@@ -1,5 +1,7 @@
 // import 'dart:nativewrappers/_internal/vm/lib/async_patch.dart';
 // import 'dart:math';
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:support/views/login/widget.dart';
@@ -11,6 +13,18 @@ var loginSendCode = TextEditingController();
 
 bool loginIsChecked = false;
 bool loginIsActive = true;
+bool loginCodeSended = false;
+
+class users {
+  String email;
+  String password;
+  users({required this.email, required this.password});
+}
+
+List<users> usersList = [
+  users(email: 'admin@mail.com', password: 'Medellin2025.'),
+  users(email: 'wposso@outlook.com', password: 'Colombia**')
+];
 
 String generarCodigo() {
   return (100000 +
@@ -23,11 +37,20 @@ String generarCodigo() {
 String codeGenerated = generarCodigo();
 
 void loginAuth(BuildContext context) {
+  var emailFound;
+  var passwordFoun;
   bool userFound = false;
+
   try {
-    if (loginEmailController.text == 'admin@mail.com' &&
-        loginPasswordController.text == 'Medellin2025.') {
-      userFound = true;
+    for (var user in usersList) {
+      emailFound = user.email;
+      passwordFoun = user.password;
+
+      if (loginEmailController.text == emailFound &&
+          loginPasswordController.text == passwordFoun) {
+        userFound = true;
+        break;
+      }
     }
 
     if (loginEmailController.text.isEmpty &&
@@ -55,97 +78,17 @@ void loginCodeAlert(BuildContext context) {
       type: ToastificationType.info,
       style: ToastificationStyle.flat,
       title: const Text(
-        'Your access recuperation code is:',
+        'Your access recuperation code is',
         style: TextStyle(fontSize: 16),
       ),
       description: Text(codeGenerated));
   loginSendCode.clear();
 }
 
-void recuperationPassword(BuildContext context) {
-  if (loginSendCode.text.isEmpty) {
-    loginAuthNotification(context, ToastificationType.warning, 'Ooops',
-        'Please enter a valida number phone');
-  } else {
-    loginCodeAlert(context);
-    Navigator.pop(context);
-    void loginBuildAlert(BuildContext context) {
-      showAdaptiveDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: Row(
-              children: [
-                const Text(
-                  'Enter a access code',
-                  style: TextStyle(fontSize: 20),
-                ),
-                const Spacer(),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.close))
-              ],
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                const Text(
-                  'Please enter the code access sended to your App',
-                  style: TextStyle(fontSize: 16),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: loginSendCode,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 10),
-                      hintText: 'Enter access code',
-                      hintStyle: const TextStyle(fontSize: 16),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-              ],
-            ),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(250, 50),
-                          elevation: 5,
-                          backgroundColor:
-                              const Color.fromARGB(255, 44, 45, 51),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {
-                        loginCodeAlert(context);
-                      },
-                      child: const Text(
-                        'Get code',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ))
-                ],
-              )
-            ],
-          );
-        },
-      );
-    }
-  }
-}
+// void recuperationPassword(BuildContext context) {
+//   if (loginSendCode.text.isEmpty) {
+//     loginAuthNotification(context, ToastificationType.warning, 'Ooops',
+//         'Please enter a valida number phone');
+//   }
+//   loginBuildAlert(context,);
+// }

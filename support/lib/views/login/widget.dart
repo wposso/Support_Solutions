@@ -16,7 +16,7 @@ void loginAuthNotification(BuildContext context, ToastificationType type,
       description: Text(description));
 }
 
-void loginBuildAlert(BuildContext context) {
+void loginBuildAlert(BuildContext context,) {
   showAdaptiveDialog(
     context: context,
     builder: (context) {
@@ -25,9 +25,9 @@ void loginBuildAlert(BuildContext context) {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         title: Row(
           children: [
-            const Text(
-              'Send code',
-              style: TextStyle(fontSize: 20),
+            Text(
+              loginCodeSended ? 'Enter code' : 'Send code',
+              style: const TextStyle(fontSize: 20),
             ),
             const Spacer(),
             IconButton(
@@ -43,35 +43,50 @@ void loginBuildAlert(BuildContext context) {
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              'Please enter your number phone to get a access code',
-              style: TextStyle(fontSize: 16),
+            Text(
+              loginCodeSended
+                  ? 'Please enter the access code sended you'
+                  : 'Please enter your phone number to receive access code',
+              style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(
               height: 20,
             ),
-            TextField(
-              controller: loginSendCode,
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: InputDecoration(
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                  prefix: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        '+57  ',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
+            loginCodeSended
+                ? TextField(
+                    controller: loginSendCode,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 10),
+                        prefix: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '+57  ',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                        hintText: 'Enter phone number',
+                        hintStyle: const TextStyle(fontSize: 16),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                  )
+                : TextField(
+                    controller: loginSendCode,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 10),
+                        hintText: 'Enter access code',
+                        hintStyle: const TextStyle(fontSize: 16),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
                   ),
-                  hintText: 'Enter phone number',
-                  hintStyle: const TextStyle(fontSize: 16),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
             const SizedBox(
               height: 40,
             ),
@@ -90,10 +105,11 @@ void loginBuildAlert(BuildContext context) {
                           borderRadius: BorderRadius.circular(10))),
                   onPressed: () {
                     loginCodeAlert(context);
+                    loginCodeSended = true;
                   },
-                  child: const Text(
-                    'Get code',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  child: Text(
+                    loginCodeSended ? 'validate' : 'Get code',
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
                   ))
             ],
           )

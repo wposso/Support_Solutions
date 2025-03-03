@@ -17,6 +17,12 @@ class _LoginState extends State<Login> {
     loginPasswordController;
   }
 
+  void changeState(){
+    setState(() {
+      loginSendCode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,6 +160,7 @@ class _LoginState extends State<Login> {
                               padding: EdgeInsets.zero,
                               child: GestureDetector(
                                   onTap: () {
+                                    // recuperationPassword(context);
                                     loginBuildAlert(context);
                                   },
                                   child: const Text(
