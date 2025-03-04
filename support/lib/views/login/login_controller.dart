@@ -4,7 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:support/views/login/widget.dart';
+import 'package:support/core/settings.dart';
+import 'package:support/views/login/login_widget.dart';
 import 'package:toastification/toastification.dart';
 
 var loginEmailController = TextEditingController();
@@ -29,7 +30,7 @@ List<users> usersList = [
 String generarCodigo() {
   return (100000 +
           (999999 - 100000) *
-              (new DateTime.now().millisecondsSinceEpoch % 1000000) /
+              (DateTime.now().millisecondsSinceEpoch % 1000000) /
               1000000)
       .toStringAsFixed(0);
 }
@@ -55,14 +56,14 @@ void loginAuth(BuildContext context) {
 
     if (loginEmailController.text.isEmpty &&
         loginPasswordController.text.isEmpty) {
-      loginAuthNotification(context, ToastificationType.warning, 'Info',
-          'Please enter a valid credentials');
+      globalNotification(context, ToastificationType.warning, 'Warning',
+          'Please enter all fields required');
     } else if (userFound) {
-      loginAuthNotification(context, ToastificationType.success, 'Success',
+      globalNotification(context, ToastificationType.success, 'Success',
           'User found success, welcome back');
     } else {
-      loginAuthNotification(context, ToastificationType.error, 'Error',
-          'User not found, please try again');
+      globalNotification(context, ToastificationType.error, 'Error',
+          'Has ocurres an error with your credentials');
     }
     loginEmailController.clear();
     loginPasswordController.clear();

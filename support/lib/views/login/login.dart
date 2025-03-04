@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:support/views/login/controller.dart';
-import 'package:support/views/login/widget.dart';
+import 'package:support/core/settings.dart';
+import 'package:support/views/login/login_controller.dart';
+import 'package:support/views/login/login_widget.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -17,7 +18,7 @@ class _LoginState extends State<Login> {
     loginPasswordController;
   }
 
-  void changeState(){
+  void changeState() {
     setState(() {
       loginSendCode;
     });
@@ -26,7 +27,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundAppColor,
         body: Column(
           children: [
             Padding(
@@ -47,15 +48,16 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.zero,
-                    child: Image(
-                      image: AssetImage('assets/support_solution.jpeg'),
-                      fit: BoxFit.contain,
-                      height: 250,
-                      width: 290,
-                    ),
-                  ),
+                  logoSupport,
+                  // const Padding(
+                  //   padding: EdgeInsets.zero,
+                  //   child: Image(
+                  //     image: AssetImage('assets/support_solution.jpeg'),
+                  //     fit: BoxFit.contain,
+                  //     height: 250,
+                  //     width: 290,
+                  //   ),
+                  // ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -98,7 +100,7 @@ class _LoginState extends State<Login> {
                           controller: loginEmailController,
                           decoration: const InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 10),
+                                  vertical: 15, horizontal: 10),
                               hintText: 'Enter your email',
                               hintStyle: TextStyle(fontSize: 16),
                               border: OutlineInputBorder(
@@ -129,7 +131,7 @@ class _LoginState extends State<Login> {
                           controller: loginPasswordController,
                           decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 10),
+                                  vertical: 15, horizontal: 10),
                               suffixIcon:
                                   loginPasswordController.text.isNotEmpty
                                       ? IconButton(
@@ -206,7 +208,9 @@ class _LoginState extends State<Login> {
                         width: 5,
                       ),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, '/Register');
+                          },
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(fontSize: 16, color: Colors.blue),

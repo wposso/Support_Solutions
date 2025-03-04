@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:support/views/login/controller.dart';
+import 'package:support/views/login/login_controller.dart';
 import 'package:toastification/toastification.dart';
 
 void loginAuthNotification(BuildContext context, ToastificationType type,
