@@ -1,0 +1,2 @@
+C:/Users/willi/OneDrive/Escritorio/Flutter/Mobile_App/support/android/app/.cxx/Debug/6h2b6q6g/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/willi/OneDrive/Escritorio/Flutter/Mobile_App/support/android/app/.cxx/Debug/6h2b6q6g/x86_64/CMakeFiles/rebuild_cache.dir

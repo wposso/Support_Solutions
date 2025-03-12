@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:support/core/settings.dart';
 import 'package:support/views/register/register_controller.dart';
+import 'package:support/views/register/register_widget.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -81,13 +82,28 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   TextField(
+                    onChanged: (x) {
+                      setState(() {});
+                    },
+                    obscureText: regPassObscure,
                     controller: regPassController,
-                    decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                    decoration: InputDecoration(
+                        suffixIcon: regPassController.text.isEmpty
+                            ? null
+                            : IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    regPassObscure = !regPassObscure;
+                                  });
+                                },
+                                icon: Icon(regPassObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 10),
                         hintText: 'New password',
-                        hintStyle: TextStyle(fontSize: 16),
-                        border: OutlineInputBorder(
+                        hintStyle: const TextStyle(fontSize: 16),
+                        border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10)))),
                   ),
@@ -105,13 +121,29 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   TextField(
+                    onChanged: (x) {
+                      setState(() {});
+                    },
+                    obscureText: regConfPassObscure,
                     controller: regConfController,
-                    decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                    decoration: InputDecoration(
+                        suffixIcon: regConfController.text.isEmpty
+                            ? null
+                            : IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    regConfPassObscure = !regConfPassObscure;
+                                  });
+                                },
+                                icon: Icon(regConfPassObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 10),
                         hintText: 'Confirm password',
-                        hintStyle: TextStyle(fontSize: 16),
-                        border: OutlineInputBorder(
+                        hintStyle: const TextStyle(fontSize: 16),
+                        border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10)))),
                   ),
@@ -130,10 +162,14 @@ class _RegisterState extends State<Register> {
                             borderRadius: BorderRadius.circular(1000)),
                         activeColor: const Color.fromARGB(255, 44, 45, 51),
                         checkColor: Colors.white,
-                        value: regIsChecked,
+                        value: regAccept,
                         onChanged: (x) {
                           setState(() {
-                            regIsChecked = !regIsChecked;
+                            registerShowDialog(context, () {
+                              setState(() {
+                                regAccept = !regAccept;
+                              });
+                            });
                           });
                         }),
                   ),

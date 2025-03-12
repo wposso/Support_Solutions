@@ -1,4 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:toastification/toastification.dart';
 
@@ -42,3 +45,10 @@ var logoSupport = const Padding(
     width: 290,
   ),
 );
+
+var Footer = NavigationBar(backgroundColor: Colors.white, destinations: const [
+  NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+  NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+  NavigationDestination(icon: Icon(Icons.wallet), label: 'Payments'),
+  NavigationDestination(icon: Icon(Icons.settings), label: 'Settings')
+]);

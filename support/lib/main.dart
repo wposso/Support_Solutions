@@ -20,3 +20,22 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// class Index extends StatelessWidget {
+//   const Index({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     List<Widget> indexList = [
+      
+//     ];
+//     return Scaffold(
+//       body: IndexedStack(
+//         index: 0,
+//         children: indexList,
+//       ),
+//     );
+//   }
+
+// }

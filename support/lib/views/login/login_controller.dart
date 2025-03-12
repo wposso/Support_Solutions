@@ -61,6 +61,7 @@ void loginAuth(BuildContext context) {
     } else if (userFound) {
       globalNotification(context, ToastificationType.success, 'Success',
           'User found success, welcome back');
+      Navigator.pushNamed(context, '/Home');
     } else {
       globalNotification(context, ToastificationType.error, 'Error',
           'Has ocurres an error with your credentials');
