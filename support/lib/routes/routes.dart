@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:support/views/contact/contact.dart';
 import 'package:support/views/home/home.dart';
 import 'package:support/views/login/login.dart';
 // import 'package:support/views/payment/payment.dart';
@@ -8,5 +9,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/Login': (context) => const Login(),
   '/Register': (context) => const Register(),
   '/Home': (context) => const Home(),
-  // '/Payment': (context) => const Payment(),
+  '/Contact': (context) => const Contact(),
 };

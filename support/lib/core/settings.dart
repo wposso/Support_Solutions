@@ -1,8 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:toastification/toastification.dart';
 
 Color backgroundAppColor = const Color.fromARGB(255, 255, 255, 255);

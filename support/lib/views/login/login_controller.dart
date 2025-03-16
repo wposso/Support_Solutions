@@ -38,8 +38,8 @@ String generarCodigo() {
 String codeGenerated = generarCodigo();
 
 void loginAuth(BuildContext context) {
-  var emailFound;
-  var passwordFoun;
+  String emailFound;
+  String passwordFoun;
   bool userFound = false;
 
   try {

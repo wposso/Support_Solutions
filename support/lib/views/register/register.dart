@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:support/core/settings.dart';
 import 'package:support/views/register/register_controller.dart';
 import 'package:support/views/register/register_widget.dart';
